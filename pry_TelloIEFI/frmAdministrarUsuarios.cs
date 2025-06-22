@@ -156,42 +156,27 @@ namespace pry_TelloIEFI
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            foreach (Control ctrl in this.Controls)
+            LimpiarControles(this);
+        }
+        private void LimpiarControles(Control control)
+        {
+            foreach (Control ctrl in control.Controls)
             {
-                if (ctrl is TextBox)
+                if (ctrl is TextBox txt)
                 {
-                    ((TextBox)ctrl).Clear();
+                    txt.Clear();
                 }
-
-                if (ctrl is DateTimePicker)
+                else if (ctrl is ComboBox cb)
                 {
-                    ((DateTimePicker)ctrl).Value = DateTime.Now;
+                    cb.SelectedIndex = -1;
                 }
-
-                if (ctrl is ComboBox)
+                else if (ctrl is DateTimePicker dtp)
                 {
-                    ((ComboBox)ctrl).SelectedIndex = -1;
+                    dtp.Value = DateTime.Now;
                 }
-            }
-            foreach (Control group in this.Controls)
-            {
-                if (group is GroupBox || group is Panel)
+                else if (ctrl.HasChildren)
                 {
-                    foreach (Control ctrl in group.Controls)
-                    {
-                        if (ctrl is TextBox)
-                        {
-                            ((TextBox)ctrl).Clear();
-                        }
-                        else if (ctrl is DateTimePicker)
-                        {
-                            ((DateTimePicker)ctrl).Value = DateTime.Now;
-                        }
-                        else if (ctrl is ComboBox)
-                        {
-                            ((ComboBox)ctrl).SelectedIndex = -1;
-                        }
-                    }
+                    LimpiarControles(ctrl); 
                 }
             }
         }
