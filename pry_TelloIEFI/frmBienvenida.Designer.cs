@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBienvenida));
             this.lblBienvenida = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.pbUsuario = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pbBienvenida = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -155,6 +156,7 @@
             this.Controls.Add(this.pbBienvenida);
             this.Controls.Add(this.lblBienvenida);
             this.Controls.Add(this.pbAdmin);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBienvenida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bienvenida";

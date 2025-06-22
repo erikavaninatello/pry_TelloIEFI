@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdministrarUsuarios));
             this.dtpHorarioFin = new System.Windows.Forms.DateTimePicker();
             this.dtpHorarioInicio = new System.Windows.Forms.DateTimePicker();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
@@ -338,9 +339,10 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.txtNombreCompleto);
             this.Controls.Add(this.GestionUsuarios);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAdministrarUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAdministrarUsuarios";
+            this.Text = "Administrar Usuarios";
             this.Load += new System.EventHandler(this.frmAdministrarUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.GestionUsuarios.ResumeLayout(false);

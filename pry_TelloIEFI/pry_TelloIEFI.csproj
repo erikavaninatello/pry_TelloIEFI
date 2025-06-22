@@ -61,8 +61,10 @@
   <ItemGroup>
     <Compile Include="clsAuditoria.cs" />
     <Compile Include="clsConexionBD.cs" />
+    <Compile Include="clsReporteDTO.cs" />
     <Compile Include="clsRol.cs" />
     <Compile Include="clsSesionActual.cs" />
+    <Compile Include="clsTarea.cs" />
     <Compile Include="clsUsuario.cs" />
     <Compile Include="clsUsuarioDAO.cs" />
     <Compile Include="frmAdministrarUsuarios.cs">

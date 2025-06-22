@@ -39,6 +39,13 @@ namespace pry_TelloIEFI
                 conexion.Close();
             }
         }
+        public static OleDbConnection ObtenerConexion()
+        {
+            string connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={Path.Combine(Application.StartupPath, "SistemaEmpleados.mdb")};Persist Security Info=False;";
+            OleDbConnection conexion = new OleDbConnection(connectionString);
+            conexion.Open();
+            return conexion;
+        }
 
         public void Dispose()
         {

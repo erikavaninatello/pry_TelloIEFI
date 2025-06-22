@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicioSesion));
             this.txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtClave = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnIniciarSesion = new Guna.UI2.WinForms.Guna2Button();
@@ -124,6 +125,7 @@
             this.lblContraseña.Size = new System.Drawing.Size(111, 16);
             this.lblContraseña.TabIndex = 13;
             this.lblContraseña.Text = "Olvide mi contraseña";
+            this.lblContraseña.Click += new System.EventHandler(this.lblContraseña_Click);
             // 
             // frmInicioSesion
             // 
@@ -136,6 +138,7 @@
             this.Controls.Add(this.btnIniciarSesion);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.txtUsuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmInicioSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iniciar Sesion";

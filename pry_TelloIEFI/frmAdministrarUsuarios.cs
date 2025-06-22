@@ -47,10 +47,10 @@ namespace pry_TelloIEFI
         private void CargarRoles()
         {
               List<clsRol> roles = new List<clsRol>
-{
-     new clsRol { Id = 1, Nombre = "Admin" },
-    new clsRol { Id = 2, Nombre = "Usuario" }
-};
+              {
+               new clsRol { Id = 1, Nombre = "Admin" },
+               new clsRol { Id = 2, Nombre = "Usuario" }
+              };
 
 
             cmbRol.DataSource = roles;
@@ -201,6 +201,16 @@ namespace pry_TelloIEFI
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = dgvUsuarios.Rows[e.RowIndex];
+
+                idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
+                txtUsuario.Text = fila.Cells["Usuario"].Value.ToString();
+                txtClave.Text = fila.Cells["Clave"].Value.ToString();
+                txtNombreCompleto.Text = fila.Cells["NombreCompleto"].Value.ToString();
+                txtTarea.Text = fila.Cells["Tarea"].Value.ToString();
+                dtpFecha.Value = Convert.ToDateTime(fila.Cells["Fecha"].Value);
+
+              
+                cmbRol.SelectedValue = Convert.ToInt32(fila.Cells["IdRol"].Value);
 
                 if (fila.Cells["HorarioInicio"].Value != DBNull.Value && fila.Cells["HorarioInicio"].Value != null)
                 {

@@ -79,5 +79,13 @@ namespace pry_TelloIEFI
         {
             txtClave.PasswordChar = '*';
         }
+
+        private void lblContraseña_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Por favor, comuníquese con un administrador para recuperar su contraseña.",
+                  "Recuperar Contraseña",
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Information);
+        }
     }
 }

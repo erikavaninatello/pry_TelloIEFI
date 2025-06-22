@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistroTareas));
             this.AgregarDetalles = new Guna.UI2.WinForms.Guna2GroupBox();
             this.txtComentario = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -43,6 +44,7 @@
             this.cbEstudio = new Guna.UI2.WinForms.Guna2CheckBox();
             this.cbInsumo = new Guna.UI2.WinForms.Guna2CheckBox();
             this.AgregarTarea = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnAgregar = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -52,7 +54,6 @@
             this.dgvTareas = new System.Windows.Forms.DataGridView();
             this.cmbTareas = new Guna.UI2.WinForms.Guna2ComboBox();
             this.cmbLugar = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.AgregarDetalles.SuspendLayout();
             this.AgregarTarea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTareas)).BeginInit();
@@ -314,6 +315,13 @@
             this.AgregarTarea.TabIndex = 13;
             this.AgregarTarea.Text = "Agregar tarea";
             // 
+            // dtpFecha
+            // 
+            this.dtpFecha.Location = new System.Drawing.Point(54, 66);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(215, 23);
+            this.dtpFecha.TabIndex = 10;
+            // 
             // guna2HtmlLabel9
             // 
             this.guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent;
@@ -453,13 +461,6 @@
             this.cmbLugar.Size = new System.Drawing.Size(188, 36);
             this.cmbLugar.TabIndex = 4;
             // 
-            // dtpFecha
-            // 
-            this.dtpFecha.Location = new System.Drawing.Point(54, 66);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(215, 23);
-            this.dtpFecha.TabIndex = 10;
-            // 
             // frmRegistroTareas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,9 +469,10 @@
             this.ClientSize = new System.Drawing.Size(964, 640);
             this.Controls.Add(this.AgregarDetalles);
             this.Controls.Add(this.AgregarTarea);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRegistroTareas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmRegistroTareas";
+            this.Text = "Registro Tareas";
             this.Load += new System.EventHandler(this.frmRegistroTareas_Load);
             this.AgregarDetalles.ResumeLayout(false);
             this.AgregarDetalles.PerformLayout();

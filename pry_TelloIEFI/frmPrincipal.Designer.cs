@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.DatosPrincipal = new Guna.UI2.WinForms.Guna2GroupBox();
             this.lblRol = new System.Windows.Forms.Label();
             this.lblFechaIngreso = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblHoraIngreso = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.btnCerrarSesion = new Guna.UI2.WinForms.Guna2Button();
-            this.dtpHora = new System.Windows.Forms.DateTimePicker();
             this.pbReporte = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pbReportePDF = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.pbTareas = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -46,6 +45,7 @@
             this.lblPDF = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblReporte = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnCerrarSesion = new Guna.UI2.WinForms.Guna2CircleButton();
             this.DatosPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbReporte)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbReportePDF)).BeginInit();
@@ -110,36 +110,6 @@
             this.lblUsuario.Size = new System.Drawing.Size(10, 15);
             this.lblUsuario.TabIndex = 18;
             this.lblUsuario.Text = ".";
-            // 
-            // btnCerrarSesion
-            // 
-            this.btnCerrarSesion.BorderColor = System.Drawing.Color.Fuchsia;
-            this.btnCerrarSesion.BorderRadius = 10;
-            this.btnCerrarSesion.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.btnCerrarSesion.BorderThickness = 3;
-            this.btnCerrarSesion.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCerrarSesion.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCerrarSesion.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCerrarSesion.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCerrarSesion.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnCerrarSesion.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btnCerrarSesion.ForeColor = System.Drawing.Color.Black;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(643, 445);
-            this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(123, 38);
-            this.btnCerrarSesion.TabIndex = 25;
-            this.btnCerrarSesion.Text = "Cerrar Sesion";
-            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
-            // 
-            // dtpHora
-            // 
-            this.dtpHora.CalendarForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dtpHora.CalendarMonthBackground = System.Drawing.SystemColors.MenuBar;
-            this.dtpHora.CalendarTrailingForeColor = System.Drawing.SystemColors.ControlLight;
-            this.dtpHora.Location = new System.Drawing.Point(316, 463);
-            this.dtpHora.Name = "dtpHora";
-            this.dtpHora.Size = new System.Drawing.Size(224, 20);
-            this.dtpHora.TabIndex = 27;
             // 
             // pbReporte
             // 
@@ -245,12 +215,32 @@
             this.lblReporte.TabIndex = 35;
             this.lblReporte.Text = "Reporte diario";
             // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.BorderColor = System.Drawing.Color.Fuchsia;
+            this.btnCerrarSesion.BorderThickness = 2;
+            this.btnCerrarSesion.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCerrarSesion.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCerrarSesion.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCerrarSesion.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCerrarSesion.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnCerrarSesion.ForeColor = System.Drawing.Color.Black;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(693, 418);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnCerrarSesion.Size = new System.Drawing.Size(72, 74);
+            this.btnCerrarSesion.TabIndex = 36;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 528);
+            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.lblReporte);
             this.Controls.Add(this.lblPDF);
             this.Controls.Add(this.lblTarea);
@@ -259,10 +249,9 @@
             this.Controls.Add(this.pbReportePDF);
             this.Controls.Add(this.pbTareas);
             this.Controls.Add(this.pbUsuario);
-            this.Controls.Add(this.dtpHora);
             this.Controls.Add(this.DatosPrincipal);
-            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.pbMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
@@ -287,8 +276,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblFechaIngreso;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblHoraIngreso;
         private System.Windows.Forms.Label lblUsuario;
-        private Guna.UI2.WinForms.Guna2Button btnCerrarSesion;
-        private System.Windows.Forms.DateTimePicker dtpHora;
         private Guna.UI2.WinForms.Guna2CirclePictureBox pbUsuario;
         private Guna.UI2.WinForms.Guna2CirclePictureBox pbTareas;
         private Guna.UI2.WinForms.Guna2CirclePictureBox pbReportePDF;
@@ -298,5 +285,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPDF;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblReporte;
         private System.Windows.Forms.Timer timer1;
+        private Guna.UI2.WinForms.Guna2CircleButton btnCerrarSesion;
     }
 }

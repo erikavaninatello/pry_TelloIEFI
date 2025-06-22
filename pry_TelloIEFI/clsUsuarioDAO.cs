@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
@@ -166,8 +166,6 @@ namespace pry_TelloIEFI
                 MessageBox.Show("Error al registrar hora de salida: " + ex.Message);
             }
         }
-
-
         public void AgregarUsuario(clsUsuario usuario)
         {
             using (OleDbConnection conexion = conexionBD.AbrirConexion())
@@ -293,8 +291,160 @@ namespace pry_TelloIEFI
                 cmd.ExecuteNonQuery();
             }
         }
+        public List<clsTarea> ObtenerTareasPorUsuario(string usuario)
+        {
+            List<clsTarea> lista = new List<clsTarea>();
+
+            using (OleDbConnection conexion = clsConexionBD.ObtenerConexion())
+            {
+                string consulta = @"
+            SELECT Descripcion, Lugar, Comentario, Fecha, Hora, 
+                   Insumo, Estudio, Vacacion, Recibo, Salario
+            FROM RegistroTareas
+            INNER JOIN Usuarios ON RegistroTareas.IdUsuario = Usuarios.Id
+            WHERE Usuarios.Usuario = ?";
+
+                OleDbCommand comando = new OleDbCommand(consulta, conexion);
+                comando.Parameters.AddWithValue("?", usuario);
+
+                OleDbDataReader lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    clsTarea t = new clsTarea
+                    {
+                        Descripcion = lector["Descripcion"]?.ToString(),
+                        Lugar = lector["Lugar"]?.ToString(),
+                        Comentario = lector["Comentario"]?.ToString(),
+                        Fecha = lector["Fecha"] != DBNull.Value ? Convert.ToDateTime(lector["Fecha"]) : DateTime.MinValue,
+                        Hora = lector["Hora"]?.ToString(),
+
+                      
+                        Insumo = lector["Insumo"] != DBNull.Value && Convert.ToBoolean(lector["Insumo"]),
+                        Estudio = lector["Estudio"] != DBNull.Value && Convert.ToBoolean(lector["Estudio"]),
+                        Vacacion = lector["Vacacion"] != DBNull.Value && Convert.ToBoolean(lector["Vacacion"]),
+                        Recibo = lector["Recibo"] != DBNull.Value && Convert.ToBoolean(lector["Recibo"]),
+                        Salario = lector["Salario"] != DBNull.Value && Convert.ToBoolean(lector["Salario"])
+                    };
+
+                    lista.Add(t);
+                }
+                lector.Close();
+            }
+
+            return lista;
+        }
+        public List<clsReporteDTO> ObtenerReporteCompleto()
+        {
+            List<clsReporteDTO> lista = new List<clsReporteDTO>();
+
+            using (OleDbConnection conexion = clsConexionBD.ObtenerConexion())
+            {
+                string consulta = @"
+        SELECT 
+            u.Usuario, 
+            u.NombreCompleto, 
+            u.HorarioInicio, 
+            u.HorarioFin,
+            a.FechaIngreso, 
+            a.HoraIngreso, 
+            a.HoraSalida,
+            rt.Fecha AS FechaTarea, 
+            rt.Tarea, 
+            rt.Lugar,
+            rt.Comentario, 
+            rt.Insumo, 
+            rt.Estudio, 
+            rt.Vacacion,
+            rt.Recibo,
+            rt.Salario
+        FROM 
+            ((Usuarios AS u
+        LEFT JOIN Auditoria AS a ON u.Id = a.IdUsuario)
+        LEFT JOIN RegistroTareas AS rt ON u.Id = rt.IdUsuario);";
+
+                OleDbCommand comando = new OleDbCommand(consulta, conexion);
+
+                try
+                {
+                    OleDbDataReader lector = comando.ExecuteReader();
+                    int count = 0;
+
+                    while (lector.Read())
+                    {
+                        var reporte = new clsReporteDTO
+                        {
+                            Usuario = lector["Usuario"]?.ToString(),
+                            NombreCompleto = lector["NombreCompleto"]?.ToString(),
+
+                            HorarioInicio = lector["HorarioInicio"] != DBNull.Value
+                                ? Convert.ToDateTime(lector["HorarioInicio"]).ToString("HH:mm")
+                                : "",
+
+                            HorarioFin = lector["HorarioFin"] != DBNull.Value
+                                ? Convert.ToDateTime(lector["HorarioFin"]).ToString("HH:mm")
+                                : "",
+
+                            FechaIngreso = lector["FechaIngreso"] != DBNull.Value
+                                ? Convert.ToDateTime(lector["FechaIngreso"])
+                                : (DateTime?)null,
+
+                            HoraIngreso = lector["HoraIngreso"] != DBNull.Value
+                                ? Convert.ToDateTime(lector["HoraIngreso"]).TimeOfDay
+                                : (TimeSpan?)null,
+
+                            HoraSalida = lector["HoraSalida"] != DBNull.Value
+                                ? Convert.ToDateTime(lector["HoraSalida"]).TimeOfDay
+                                : (TimeSpan?)null,
+
+                            FechaTarea = lector["FechaTarea"] != DBNull.Value
+                                ? Convert.ToDateTime(lector["FechaTarea"])
+                                : (DateTime?)null,
+
+                            Tarea = lector["Tarea"]?.ToString(),
+                            Lugar = lector["Lugar"]?.ToString(),
+                            Comentario = lector["Comentario"]?.ToString(),
+
+                            Insumo = lector["Insumo"] != DBNull.Value && Convert.ToBoolean(lector["Insumo"]),
+                            Estudio = lector["Estudio"] != DBNull.Value && Convert.ToBoolean(lector["Estudio"]),
+                            Vacacion = lector["Vacacion"] != DBNull.Value && Convert.ToBoolean(lector["Vacacion"]),
+                            Recibo = lector["Recibo"] != DBNull.Value && Convert.ToBoolean(lector["Recibo"]),
+                            Salario = lector["Salario"] != DBNull.Value && Convert.ToBoolean(lector["Salario"])
+                        };
+
+                        lista.Add(reporte);  
+                        count++;
+                    }
+
+                    lector.Close();
+
+                    MessageBox.Show("Se recuperaron " + count + " registros de la base de datos.", "Depuración", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
+                }
+            }
+
+            return lista;
+        }
+
+
 
 
 
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
